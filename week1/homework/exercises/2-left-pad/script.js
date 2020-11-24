@@ -1,3 +1,4 @@
+
 /**
  ** Exercise 2: To the left, to the left...
  * 
@@ -8,6 +9,10 @@
  *
  */
 
+const leftPad = require('left-pad');
+
 let numbers = [ "12", "846", "2", "1236" ];
 
-// YOUR CODE GOES HERE
+numbers.forEach(element => {  
+    console.log(leftPad(element, 8, ' '));
+});
