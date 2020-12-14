@@ -21,7 +21,7 @@ app.post('/blogs', (req, res) => {
 });
 
 //Update blog
-app.put('/posts/:title', (req, res) => {
+app.put('/blogs/:title', (req, res) => {
 
  if(!isValid(req)){
       res.status(404);
