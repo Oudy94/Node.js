@@ -17,6 +17,11 @@ app.get('/', (req, res) => {
 });
 
 app.post('/weather', (req, res) => {
+    if(typeof req.body === "undefined" || typeof req.body.cityName === "undefined"){
+        res.status(404);
+        res.send("Invalid request");
+        return;
+    }
     const cityName = req.body.cityName;
     res.json(cityName);
 });
