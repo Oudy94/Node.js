@@ -9,6 +9,12 @@ app.use(express.json());
 //Create blog
 app.post('/blogs', (req, res) => {
 
+ if(!isValid(req)){
+      res.status(404);
+      res.send("Invalid request");
+      return;
+  }
+
   fs.writeFileSync(path.join(__dirname, '/blogs', req.body.title), req.body.content);
   res.end('ok');
 
@@ -16,6 +22,12 @@ app.post('/blogs', (req, res) => {
 
 //Update blog
 app.put('/posts/:title', (req, res) => {
+
+ if(!isValid(req)){
+      res.status(404);
+      res.send("Invalid request");
+      return;
+  }
 
   if (fs.existsSync(path.join(__dirname, '/blogs', req.params.title))) {
     fs.writeFileSync(path.join(__dirname, '/blogs', req.body.title), req.body.content);
@@ -74,5 +86,15 @@ app.get('/blogs', (req, res) => {
   });
 
 });
+
+function isValid(req){
+  if (typeof req.body === "undefined" || typeof req.body.title === "undefined" || typeof req.body.content === "undefined"){
+    return true;
+  }
+   else{
+     return false;
+   }
+}
+
 
 app.listen(3000);
